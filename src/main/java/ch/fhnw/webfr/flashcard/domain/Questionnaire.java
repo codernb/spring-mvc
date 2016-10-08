@@ -1,23 +1,30 @@
 package ch.fhnw.webfr.flashcard.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "questionnaires")
 public class Questionnaire {
-	private Long id;
+
+	@Id
+	private String id;
+
 	private String title;
 	private String description;
-	
+
 	public Questionnaire(String title, String description) {
 		this.title = title;
 		this.description = description;
 	}
-	
-	public void setId(Long id) {
+
+	public void setId(String id) {
 		this.id = id;
 	}
-	
-	public Long getId() {
+
+	public String getId() {
 		return id;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -25,5 +32,5 @@ public class Questionnaire {
 	public String getDescription() {
 		return description;
 	}
-	
+
 }
