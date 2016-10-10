@@ -11,6 +11,7 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
 
@@ -30,6 +31,7 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	compile 'org.springframework.boot:spring-boot-devtools'
 	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	

@@ -51,6 +51,8 @@ public class QuestionnareController {
 	private void handleQuestionnairesRequest(HttpServletRequest request, HttpServletResponse response,
 			List<Questionnaire> questionnaires) throws IOException {
 		PrintWriter writer = response.getWriter();
+		
+		
 		writer.append("<html><head><title>Example</title></head><body>");
 		writer.append("<h3>Fragebögen</h3>");
 		for (Questionnaire questionnaire : questionnaires) {
@@ -60,6 +62,8 @@ public class QuestionnareController {
 			writer.append("<p><a href='" + response.encodeURL(url) + "'>" + questionnaire.getTitle() + "</a></p>");
 		}
 		writer.append("</body></html>");
+		
+		
 	}
 
 }
