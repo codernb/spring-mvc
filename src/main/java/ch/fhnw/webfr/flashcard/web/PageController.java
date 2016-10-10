@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -22,17 +19,14 @@ import ch.fhnw.webfr.flashcard.persistence.UserRepository;
 public class PageController {
 
 	@Autowired
-	private QuestionnareController questionnareController;
-
-	@Autowired
 	private UserRepository userRepository;
 
 	@Autowired
 	private QuestionnaireRepository questionnaireRepository;
 
-	@GetMapping
-	public void index(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		questionnareController.findAll(response, request);
+	@GetMapping("/")
+	public String index() throws IOException {
+		return "redirect:questionnaires";
 	}
 
 	@ResponseBody
