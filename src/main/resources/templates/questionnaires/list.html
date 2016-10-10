@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Example</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container-fluid">
+		<h3>Questionnaires</h3>
+		<table>
+			<tbody>
+				<tr th:each="questionnaire : ${questionnaires}">
+					<td><a th:href="@{/questionnaires}+ '/' + ${questionnaire.id}"
+						th:text="${questionnaire.title}">Test Title</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
