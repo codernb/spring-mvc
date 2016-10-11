@@ -39,7 +39,7 @@ public class PageController {
 
 	@ResponseBody
 	@GetMapping("/create")
-	public String create(@RequestParam(name = "name") String name) throws MissingServletRequestParameterException {
+	public String create(@RequestParam("name") String name) throws MissingServletRequestParameterException {
 		if (name.isEmpty())
 			throw new MissingServletRequestParameterException("name", String.class.getSimpleName());
 		userRepository.save(new User(name, questionnaireRepository.findAll().stream().filter(q -> Math.random() < 0.5)
