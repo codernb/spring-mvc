@@ -46,5 +46,10 @@ public class PageController {
 				.collect(Collectors.toList())));
 		return "created";
 	}
+	
+	@GetMapping("/error")
+	public String error() {
+		return "error";
+	}
 
 }

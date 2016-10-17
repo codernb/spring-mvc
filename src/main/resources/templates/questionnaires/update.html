@@ -10,8 +10,9 @@
 <body>
 	<div class="container-fluid">
 		<div layout:fragment="content">
-			<form class="form-horizontal" th:action="@{/questionnaires/update}"
+			<form class="form-horizontal" th:action="@{/questionnaires}"
 				th:object="${questionnaire}" method="post">
+				<input type="hidden" name="_method" value="PUT" />
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="title">ID:</label>
 					<div class="col-md-8">

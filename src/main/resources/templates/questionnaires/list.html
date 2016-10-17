@@ -37,10 +37,15 @@
 							th:href="@{/questionnaires} + '/' + ${questionnaire.id} + '/update'">
 								<span class="glyphicon glyphicon-edit"></span>
 						</a></td>
-						<td style="width: 10px;"><a class="btn-link btn"
-							th:href="@{/questionnaires} + '/' + ${questionnaire.id} + '/delete'">
-								<span class="glyphicon glyphicon-trash"></span>
-						</a></td>
+						<td style="width: 10px;">
+							<form method="post"
+								th:action="@{/questionnaires} + '/' + ${questionnaire.id}">
+								<input type="hidden" name="_method" value="DELETE" />
+								<button type="submit" class="btn-link btn">
+									<span class="glyphicon glyphicon-trash"></span>
+								</button>
+							</form>
+						</td>
 					</tr>
 				</tbody>
 			</table>
