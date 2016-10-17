@@ -4,25 +4,32 @@
 	layout:decorator="layout">
 <head>
 <title>FlashCard-MVC | Show</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
 	<div class="container-fluid">
 		<div layout:fragment="content">
-			<form class="form-horizontal" th:action="@{/questionnaires}"
+			<form class="form-horizontal" th:action="@{/questionnaires/update}"
 				th:object="${questionnaire}" method="post">
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="title">ID:</label>
 					<div class="col-md-8">
-						<input type="text" th:field="*{id}" hidden="true" />
-						<input type="text" id="id" class="form-control"
-							th:field="*{id}" disabled="disabled" />
+						<input type="text" th:field="*{id}" hidden="true" /> <input
+							type="text" id="id" class="form-control" th:field="*{id}"
+							disabled="disabled" />
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('title')} ? 'has-error has-feedback'">
 					<label class="col-md-2 control-label" for="title">Title:</label>
 					<div class="col-md-8">
 						<input type="text" id="title" class="form-control"
-							th:field="*{title}" autofocus="autofocus" />
+							th:field="*{title}" autofocus="autofocus" /> <span
+							class="sign form-control-feedback"
+							th:if="${#fields.hasErrors('title')}"></span> <span
+							class="help-block" th:if="${#fields.hasErrors('title')}"
+							th:errors="*{title}"></span>
 					</div>
 				</div>
 				<div class="form-group">

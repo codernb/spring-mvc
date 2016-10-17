@@ -2,9 +2,12 @@ package ch.fhnw.webfr.flashcard.web;
 
 import java.io.IOException;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,39 +27,48 @@ public class QuestionnareController {
 	@GetMapping
 	public String findAll(Model model) {
 		model.addAttribute("questionnaires", questionnaireRepository.findAll());
-		return "questionnaires/list";
+		return "/questionnaires/list";
 	}
 
 	@GetMapping("/{id}")
 	public String findById(@PathVariable String id, Model model) throws IOException {
 		model.addAttribute("questionnaire", questionnaireRepository.findOne(id));
-		return "questionnaires/show";
+		return "/questionnaires/show";
 	}
 
 	@GetMapping("/create")
 	public String create(Model model, @RequestParam(defaultValue = "") String title,
 			@RequestParam(defaultValue = "") String description) {
 		model.addAttribute("questionnaire", new Questionnaire(title, description));
-		return "questionnaires/create";
+		return "/questionnaires/create";
 	}
 
 	@PostMapping
-	public String create(Questionnaire questionnaire) {
+	public String create(@Valid Questionnaire questionnaire, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "questionnaires/create";
 		questionnaire = questionnaireRepository.save(questionnaire);
-		return String.format("redirect:questionnaires/%s", questionnaire.getId());
+		return String.format("redirect:/questionnaires/%s", questionnaire.getId());
 	}
 	
 	@GetMapping("/{id}/update")
 	public String update(Model model, @PathVariable String id) {
 		model.addAttribute("questionnaire", questionnaireRepository.findOne(id));
-		return "questionnaires/update";
+		return "/questionnaires/update";
+	}
+
+	@PostMapping("/update")
+	public String update(@Valid Questionnaire questionnaire, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "/questionnaires/update";
+		questionnaire = questionnaireRepository.save(questionnaire);
+		return String.format("redirect:/questionnaires/%s", questionnaire.getId());
 	}
 	
 	@GetMapping("/{id}/delete")
-	public String delete(Model model, @PathVariable String id) {
+	public String delete(@PathVariable String id) {
 		questionnaireRepository.delete(id);
-		model.addAttribute("questionnaires", questionnaireRepository.findAll());
-		return "questionnaires/list";
+		return "redirect:/questionnaires";
 	}
 
 }

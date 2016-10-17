@@ -11,8 +11,8 @@
 	<div class="container" layout:fragment="content">
 		<div class="row">
 			<div class="text-right col-md-1 col-md-push-11">
-				<a class="btn btn-primary" th:href="@{questionnaires/create}"> <span
-					class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				<a class="btn btn-primary" th:href="@{/questionnaires/create}">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</a>
 			</div>
 		</div>
@@ -30,15 +30,15 @@
 						<td colspan="10" style="vertical-align: middle;"
 							th:text="${questionnaire.description}" />
 						<td style="width: 10px;"><a class="btn-link btn"
-							th:href="@{/questionnaires}+ '/' + ${questionnaire.id}"> <span
+							th:href="@{/questionnaires} + '/' + ${questionnaire.id}"> <span
 								class="glyphicon glyphicon-zoom-in"></span>
 						</a></td>
 						<td style="width: 10px;"><a class="btn-link btn"
-							th:href="@{/questionnaires}+ '/' + ${questionnaire.id} + '/update'">
+							th:href="@{/questionnaires} + '/' + ${questionnaire.id} + '/update'">
 								<span class="glyphicon glyphicon-edit"></span>
 						</a></td>
 						<td style="width: 10px;"><a class="btn-link btn"
-							th:href="@{/questionnaires}+ '/' + ${questionnaire.id} + '/delete'">
+							th:href="@{/questionnaires} + '/' + ${questionnaire.id} + '/delete'">
 								<span class="glyphicon glyphicon-trash"></span>
 						</a></td>
 					</tr>
